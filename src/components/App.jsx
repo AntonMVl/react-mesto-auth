@@ -7,9 +7,10 @@ import { AvatarPopup } from './AvatarPopup';
 import { ConfirmPopup } from './ConfirmPopup';
 import { api } from '../utils/Api';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
+import ProtectedRoute from './ProtectedRoute';
 
 function App(props) {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -21,6 +22,7 @@ function App(props) {
     const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
     const [deleteCard, setDeleteCard] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
@@ -148,19 +150,38 @@ function App(props) {
                         <Route
                             path="/"
                             element={
-                                <Main
-                                    onEditProfile={handleEditProfileClick}
-                                    onAddPlace={handleAddPlaceClick}
-                                    onEditAvatar={handleEditAvatarClick}
-                                    cards={cards}
-                                    onCardLike={handleCardLike}
-                                    onCardClick={handleCardClick}
-                                    onDeleteCardClick={handleConfirmPopupClick}
+                                <ProtectedRoute
+                                    element={
+                                        <Main
+                                            onEditProfile={
+                                                handleEditProfileClick
+                                            }
+                                            onAddPlace={handleAddPlaceClick}
+                                            onEditAvatar={handleEditAvatarClick}
+                                            cards={cards}
+                                            onCardLike={handleCardLike}
+                                            onCardClick={handleCardClick}
+                                            onDeleteCardClick={
+                                                handleConfirmPopupClick
+                                            }
+                                        />
+                                    }
+                                    loggedIn={loggedIn}
                                 />
                             }
                         />
                         <Route path="/sign-in" element={<Login />} />
                         <Route path="/sign-up" element={<Register />} />
+                        <Route
+                            path="*"
+                            element={
+                                loggedIn ? (
+                                    <Navigate to="/" />
+                                ) : (
+                                    <Navigate to="/sign-in" />
+                                )
+                            }
+                        />
                     </Routes>
                 </div>
                 <ProfilePopup

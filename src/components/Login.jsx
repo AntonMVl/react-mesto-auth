@@ -3,7 +3,7 @@ import Header from './Header';
 function Login() {
     return (
         <>
-            <Header buttonValue="Регистрация" />
+            <Header buttonValue="Регистрация" endpoint="/sign-up" />
             <section className="login">
                 <h2 className="login__title">Вход</h2>
                 <form

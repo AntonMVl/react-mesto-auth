@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import Header from './Header';
 
 function Register() {
     return (
         <>
-            <Header buttonValue="Войти" />
+            <Header buttonValue="Войти" endpoint="/sign-in" />
             <section className="login">
                 <h2 className="login__title">Регистрация</h2>
                 <form
@@ -44,9 +45,9 @@ function Register() {
                     </button>
                     <p className="login__info">
                         Уже зарегистрированы?{' '}
-                        <a className="login__info link" href="">
+                        <Link to="/sign-in" className="login__info link">
                             Войти
-                        </a>
+                        </Link>
                     </p>
                 </form>
             </section>
