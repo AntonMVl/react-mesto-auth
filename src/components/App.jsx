@@ -158,13 +158,17 @@ function App(props) {
         if (localStorage.getItem('jwt')) {
             const jwt = localStorage.getItem('jwt');
             if (jwt) {
-                getContent(jwt).then((res) => {
-                    if (res) {
-                        setLoggedIn(true);
-                        setHeaderEmail(res.data.email);
-                        navigate('/', { replace: true });
-                    }
-                });
+                getContent(jwt)
+                    .then((res) => {
+                        if (res) {
+                            setLoggedIn(true);
+                            setHeaderEmail(res.data.email);
+                            navigate('/', { replace: true });
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(`Ошибка проверки токена - ${error}`);
+                    });
             }
         }
     };

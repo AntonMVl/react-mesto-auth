@@ -17,7 +17,7 @@ export function Popup({ onClose, classValue, isOpen, children }) {
         };
     }, [isOpen, onClose]);
 
-    const handleOverlayClick = (e) => {
+    const handlePopupClose = (e) => {
         if (
             e.target.classList.contains('popup_opened') ||
             e.target.classList.contains('popup__close')
@@ -31,7 +31,7 @@ export function Popup({ onClose, classValue, isOpen, children }) {
             className={`popup popup_type_${classValue} ${
                 isOpen ? 'popup_opened' : ''
             }`}
-            onClick={handleOverlayClick}
+            onClick={handlePopupClose}
         >
             {children}
         </section>

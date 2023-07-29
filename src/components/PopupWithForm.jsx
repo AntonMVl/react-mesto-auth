@@ -20,7 +20,6 @@ export function PopupWithForm({
                     className="popup__form"
                     name={`${classValue}-container`}
                     method="post"
-                    noValidate
                     onSubmit={onSubmit}
                 >
                     <h2 className="popup__title">{title}</h2>

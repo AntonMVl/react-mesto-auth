@@ -1,23 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 
 function Login({ onLogin }) {
     const [email, setEmail] = useState('');
-    const [password, setPasword] = useState('');
+    const [password, setPassword] = useState('');
 
     function handleChangeEmail(evt) {
         setEmail(evt.target.value);
     }
 
     function handleChangePassword(evt) {
-        setPasword(evt.target.value);
+        setPassword(evt.target.value);
     }
     function handleSubmit(e) {
         e.preventDefault();
         onLogin(email, password);
-        setEmail('');
-        setPasword('');
     }
+
+    useEffect(() => {
+        setEmail('');
+        setPassword('');
+    }, []);
 
     return (
         <>

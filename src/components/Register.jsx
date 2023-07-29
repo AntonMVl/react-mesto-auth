@@ -1,25 +1,28 @@
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Register({ onRegister }) {
     const [email, setEmail] = useState('');
-    const [password, setPasword] = useState('');
+    const [password, setPassword] = useState('');
 
     function handleChangeEmail(evt) {
         setEmail(evt.target.value);
     }
 
     function handleChangePassword(evt) {
-        setPasword(evt.target.value);
+        setPassword(evt.target.value);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         onRegister(email, password);
-        setEmail('');
-        setPasword('');
     };
+
+    useEffect(() => {
+        setEmail('');
+        setPassword('');
+    }, []);
 
     return (
         <>
