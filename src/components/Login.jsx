@@ -1,6 +1,24 @@
+import { useState } from 'react';
 import Header from './Header';
 
-function Login() {
+function Login({ onLogin }) {
+    const [email, setEmail] = useState('');
+    const [password, setPasword] = useState('');
+
+    function handleChangeEmail(evt) {
+        setEmail(evt.target.value);
+    }
+
+    function handleChangePassword(evt) {
+        setPasword(evt.target.value);
+    }
+    function handleSubmit(e) {
+        e.preventDefault();
+        onLogin(email, password);
+        setEmail('');
+        setPasword('');
+    }
+
     return (
         <>
             <Header buttonValue="Регистрация" endpoint="/sign-up" />
@@ -10,6 +28,7 @@ function Login() {
                     method="post"
                     noValidate
                     className="login__form-container"
+                    onSubmit={handleSubmit}
                 >
                     <fieldset className="login__input-container">
                         <input
@@ -22,6 +41,8 @@ function Login() {
                             maxLength="40"
                             name="email"
                             placeholder="Email"
+                            value={email}
+                            onChange={handleChangeEmail}
                         />
                         <span id="error-name" className="login__error"></span>
                     </fieldset>
@@ -36,6 +57,8 @@ function Login() {
                             maxLength="200"
                             name="password"
                             placeholder="Пароль"
+                            value={password}
+                            onChange={handleChangePassword}
                         />
                         <span id="error-job" className="login__error"></span>
                     </fieldset>

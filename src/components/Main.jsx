@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Card } from '../components/Card';
 import buttonUserNameImage from '../images/icons/Vector.png';
 import buttonAddNewImage from '../images/icons/plus.png';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import Header from './Header';
-import Footer from './Footer';
 
 export function Main({
     onEditProfile,
@@ -14,12 +13,20 @@ export function Main({
     onCardLike,
     onCardClick,
     onDeleteCardClick,
+    signOut,
+    loggedIn,
+    headerEmail,
 }) {
     const currentUser = useContext(CurrentUserContext);
 
     return (
         <>
-            <Header buttonValue="Выйти" />
+            <Header
+                buttonValue="Выйти"
+                onClick={signOut}
+                loggedIn={loggedIn}
+                headerEmail={headerEmail}
+            />
             <main className="main">
                 <section className="profile">
                     <img
@@ -82,7 +89,6 @@ export function Main({
                     </ul>
                 </section>
             </main>
-            <Footer />
         </>
     );
 }

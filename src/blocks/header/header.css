@@ -8,5 +8,6 @@
     justify-items: center;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
 }

@@ -11,6 +11,7 @@
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/header/__button/header__button.css);
+@import url(./blocks/header/__email/header__email.css);
 /*connect profile*/
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__image/profile__image.css);
@@ -66,6 +67,9 @@
 @import url(./blocks/popup/__container/_type_delete-confirmed/popup__container_type_delete-confirmed.css);
 @import url(./blocks/popup/__input-button/_type_confirmation/popup__input-button_type_confirmation.css);
 @import url(./blocks/popup/__title/_type_confirmation/popup__title_type_confirmation.css);
+@import url(./blocks/popup/__notice-image/popup__notice-image.css);
+@import url(./blocks/popup/__info/popup__info.css);
+@import url(./blocks/popup/__container/_type_info-tooltip/popup__container_type_info-tooltip.css);
 /*connect login*/
 @import url(./blocks/login/login.css);
 @import url(./blocks/login/__title/login__title.css);

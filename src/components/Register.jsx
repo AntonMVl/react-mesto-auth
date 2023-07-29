@@ -1,7 +1,26 @@
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import { useState } from 'react';
 
-function Register() {
+function Register({ onRegister }) {
+    const [email, setEmail] = useState('');
+    const [password, setPasword] = useState('');
+
+    function handleChangeEmail(evt) {
+        setEmail(evt.target.value);
+    }
+
+    function handleChangePassword(evt) {
+        setPasword(evt.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onRegister(email, password);
+        setEmail('');
+        setPasword('');
+    };
+
     return (
         <>
             <Header buttonValue="Войти" endpoint="/sign-in" />
@@ -11,6 +30,7 @@ function Register() {
                     method="post"
                     noValidate
                     className="login__form-container"
+                    onSubmit={handleSubmit}
                 >
                     <fieldset className="login__input-container">
                         <input
@@ -23,6 +43,8 @@ function Register() {
                             maxLength="40"
                             name="email"
                             placeholder="Email"
+                            value={email}
+                            onChange={handleChangeEmail}
                         />
                         <span id="error-name" className="login__error"></span>
                     </fieldset>
@@ -37,6 +59,8 @@ function Register() {
                             maxLength="200"
                             name="password"
                             placeholder="Пароль"
+                            value={password}
+                            onChange={handleChangePassword}
                         />
                         <span id="error-job" className="login__error"></span>
                     </fieldset>
